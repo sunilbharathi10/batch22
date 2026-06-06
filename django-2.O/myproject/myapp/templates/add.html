@@ -1,0 +1,22 @@
+<h2>Add Student</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="name" placeholder="Name"><br><br>
+    <input type="number" name="age" placeholder="Age"><br><br>
+    <input type="email" name="email" placeholder="Email"><br><br>
+
+    <label>Courses:</label><br>
+    {% for c in courses %}
+        <input type="checkbox" name="courses" value="{{ c.id }}">
+        {{ c.name }} ({{ c.duration }})<br>
+    {% endfor %}
+
+    <button type="submit">Add</button>
+</form>
+
+<a href="{% url 'add_course' %}">Add Course</a>
+
+
+

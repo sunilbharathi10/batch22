@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student CRUD</title>
+</head>
+<body>
+
+<h2>Add Student</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Save
+    </button>
+</form>
+
+<hr>
+
+<h2>Students List</h2>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Email</th>
+    <th>Action</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+    <td>{{ student.id }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.age }}</td>
+    <td>{{ student.email }}</td>
+
+    <td>
+
+        <a href="{% url 'update_student' student.id %}">
+            Edit
+        </a>
+
+        |
+
+        <a href="{% url 'delete_student' student.id %}">
+            Delete
+        </a>
+
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
